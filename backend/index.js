@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 
 const db = new DatabaseService();
-app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+app.use(express.static('frontend/build'));
 
 
 // parse application/x-www-form-urlencoded
