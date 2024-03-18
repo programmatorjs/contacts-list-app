@@ -3,6 +3,10 @@ import ListItem from './ListItem';
 import AddContacts from './AddContacts';
 import SearchContacts from './SearchContacts';
 
+
+const baseUrl = 'http://5.35.84.37:3000';
+
+
 class App extends React.Component {
   constructor() {
     super();
@@ -11,8 +15,9 @@ class App extends React.Component {
     };
   }
 
+  
   handleSearchContact = async (query) => {
-    const url = `http://localhost:3000/api/v1.0/contacts/${query}`;
+    const url = `${baseUrl}/api/v1.0/contacts/${query}`;
 
     const response = await fetch(url);
     const data = await response.json();
@@ -25,7 +30,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const url = 'http://localhost:3000/api/v1.0/contacts';
+    const url = `${baseUrl}/api/v1.0/contacts`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -37,7 +42,7 @@ class App extends React.Component {
   }
 
   handleDeleteContact = async (id) => {
-    const url = `http://localhost:3000/api/v1.0/contacts/${id}`;
+    const url = `${baseUrl}/api/v1.0/contacts/${id}`;
 
     await fetch(url, {
       method: 'DELETE',
@@ -48,7 +53,7 @@ class App extends React.Component {
   };
 
   fetchContacts = async () => {
-    const url = 'http://localhost:3000/api/v1.0/contacts';
+    const url = `${baseUrl}/api/v1.0/contacts`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -59,7 +64,7 @@ class App extends React.Component {
 
   handleUpdateContact = async (name, phone, id) => {
     const { users } = this.state;
-    const url = `http://localhost:3000/api/v1.0/contacts/${id}`;
+    const url = `${baseUrl}/api/v1.0/contacts${id}`;
     await fetch(url, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -89,7 +94,7 @@ class App extends React.Component {
 
   handleAddContact = async (name, phone) => {
     const { users } = this.state;
-    const url = 'http://5.35.84.37:3000/api/v1.0/contacts';
+    const url = `${baseUrl}/api/v1.0/contacts`;
     await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
