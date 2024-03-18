@@ -11,13 +11,13 @@ const db = new DatabaseService();
 app.use(express.static('frontend/build'));
 
 
-// parse application/x-www-form-urlencoded
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// parse application/json
+
 app.use(bodyParser.json());
 
-const port = 3005;
+const port = 3000;
 
 app.get('/api/v1.0/contacts', (req, res) => {
   const allData = db.getAll();
