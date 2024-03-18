@@ -89,7 +89,7 @@ class App extends React.Component {
 
   handleAddContact = async (name, phone) => {
     const { users } = this.state;
-    const url = 'http://localhost:3000/api/v1.0/contacts';
+    const url = 'http://5.35.84.37:3000/api/v1.0/contacts';
     await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
