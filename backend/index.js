@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 
 const db = new DatabaseService();
-app.use(express.static('public'));
+app.use(express.static('frontend'));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
