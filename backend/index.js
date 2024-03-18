@@ -2,11 +2,18 @@ import express from 'express';
 import DatabaseService from './database-service.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+
 const app = express();
 app.use(cors());
 
 const db = new DatabaseService();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 app.use(express.static(path.join(__dirname, 'frontend', 'public')));
 
 // parse application/x-www-form-urlencoded
