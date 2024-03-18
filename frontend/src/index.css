@@ -7,94 +7,51 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background: black;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-size: 16px; /* Базовый размер шрифта для удобного чтения */
 }
 
 .App {
   display: flex;
-  flex-direction: row;
-  padding-left: 3%;
+  flex-direction: column; /* Изменение направления расположения элементов на вертикальное */
+  padding: 10px; /* Уменьшение внутренних отступов */
 }
 
-#contact-list-container {
-  width: 60vw;
-}
-
-#add-contacts-container {
-  width: 40vw;
-  position: fixed;
-  top: 0; 
-  right: 0; 
-  text-align: center;
-}
-
+#contact-list-container,
+#add-contacts-container,
 #search-contacts-container {
-  width: 40vw;
-  position: fixed;
-  top: 150px;
-  right: 0;
-  text-align: center;
-}
-
-
-
-header {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-img {
-  width: 50px;
-  height: 40px;
-  margin: 5px 20px 0 0;
-}
-
-img:hover {
-  cursor: pointer;
-}
-
-ul {
-  list-style-type: none;
-  width: 70%;
-  margin: auto;
-}
-
-p {
-  display: inline-block;
-  color: whitesmoke;
-  margin-right: 5px;
-  font-size: 1.3rem;
-  /* font-family: monospace; */
+  width: 100%; /* Занимать всю доступную ширину экрана */
+  margin-bottom: 20px; /* Добавление отступа между контейнерами */
 }
 
 h1 {
   color: white;
   font-weight: 50;
-  font-size: 3rem;
+  font-size: 2rem; /* Уменьшение размера заголовка */
   font-family: sans-serif;
-  letter-spacing: -4px;
-  display: inline;
-  
+  letter-spacing: -2px; /* Изменение интервала между символами */
   margin-bottom: 10px;
-  
+}
+
+button {
+  height: 50px; /* Увеличение высоты кнопок */
+  font-size: 1.2rem; /* Увеличение размера шрифта на кнопках */
+}
+
+img {
+  width: 40px;
+  height: 30px;
+}
+
+ul {
+  list-style-type: none;
+  width: 100%;
+  margin: auto;
 }
 
 li {
   background-color: blue;
-  margin-bottom: 2px;
-  display: flex;
-  justify-content: space-around;
+  margin-bottom: 5px;
   border-radius: 10px;
-}
-
-.window-close {
-  margin-left: 30px;
-  color: red;
-  background-color: white;
 }
 
 li:hover {
@@ -102,8 +59,7 @@ li:hover {
 }
 
 form {
-  width: 90%;
-  margin-left: 30px;
+  width: 100%;
   text-align: center;
 }
 
@@ -111,27 +67,8 @@ input {
   margin-left: 10px;
 }
 
-button {
-  margin-top: 10px;
-  display: inline-block;
-  height: 40px;
-  color: white;
-  background-color: grey;
-}
-
-.list-btn {
-  height: 25px;
-  width: 25px;
-}
-
-.name-container,
-.phone-container {
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btns-container {
-  width: 20%;
+.window-close {
+  margin-left: 20px;
+  color: red;
+  background-color: white;
 }
