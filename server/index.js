@@ -14,7 +14,7 @@ const db = new DatabaseService();
 
 
 
-app.use(express.static('frontend/build'));
+app.use(express.static('client/build'));
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
