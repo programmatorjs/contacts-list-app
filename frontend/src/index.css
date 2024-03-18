@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,4 +71,13 @@ input {
   margin-left: 20px;
   color: red;
   background-color: white;
+}
+
+h1.empty-message {
+  color: white;
+  font-size: 1.5rem; /* Уменьшим размер шрифта для текста "Пока пусто...." */
+  margin-top: 50%; /* Поместим текст вертикально по центру контейнера */
+  transform: translateY(
+    -50%
+  ); /* Сдвинем текст обратно на половину его высоты, чтобы он оказался точно по центру */
 }
