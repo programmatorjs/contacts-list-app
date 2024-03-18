@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-const port = 3000;
+const port = 3005;
 
 app.get('/api/v1.0/contacts', (req, res) => {
   const allData = db.getAll();
