@@ -7,34 +7,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background: black;
-  font-size: 16px; /* Базовый размер шрифта для удобного чтения */
+  font-size: 16px;
 }
 
 .App {
   display: flex;
-  flex-direction: column; /* Изменение направления расположения элементов на вертикальное */
-  padding: 10px; /* Уменьшение внутренних отступов */
+  flex-direction: column;
+  padding: 10px;
 }
 
 #contact-list-container,
 #add-contacts-container,
 #search-contacts-container {
-  width: 100%; /* Занимать всю доступную ширину экрана */
-  margin-bottom: 20px; /* Добавление отступа между контейнерами */
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
 }
 
 h1 {
   color: white;
   font-weight: 50;
-  font-size: 2rem; /* Уменьшение размера заголовка */
+  font-size: 2rem;
   font-family: sans-serif;
-  letter-spacing: -2px; /* Изменение интервала между символами */
+  letter-spacing: -2px;
   margin-bottom: 10px;
 }
 
 button {
-  height: 50px; /* Увеличение высоты кнопок */
-  font-size: 1.2rem; /* Увеличение размера шрифта на кнопках */
+  height: 50px;
+  font-size: 1.2rem;
+}
+
+#add-contacts-container button {
+  margin-top: 5px;
+  background-color: green;
+}
+
+#search-contacts-container button {
+  margin-top: 5px;
+  background-color: green; /* Изменено на серый цвет */
 }
 
 img {
@@ -46,12 +58,14 @@ ul {
   list-style-type: none;
   width: 100%;
   margin: auto;
+  padding: 0;
 }
 
 li {
   background-color: blue;
   margin-bottom: 5px;
   border-radius: 10px;
+  padding: 10px;
 }
 
 li:hover {
@@ -75,9 +89,12 @@ input {
 
 h1.empty-message {
   color: white;
-  font-size: 1.5rem; /* Уменьшим размер шрифта для текста "Пока пусто...." */
-  margin-top: 50%; /* Поместим текст вертикально по центру контейнера */
-  transform: translateY(
-    -50%
-  ); /* Сдвинем текст обратно на половину его высоты, чтобы он оказался точно по центру */
+  font-size: 1.5rem;
+  margin-top: 50%;
+  transform: translateY(-50%);
 }
+
+/* .name-input,
+.phone-input {
+  margin-bottom: 15px;
+} */

@@ -144,7 +144,7 @@ class App extends React.Component {
           </header>
           <ul>
             {users.length === 0 ? (
-              <h1>Пока пусто....</h1>
+              <h1></h1>
             ) : (
               users.map((user) => {
                 return (
