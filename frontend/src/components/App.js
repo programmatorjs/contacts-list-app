@@ -64,7 +64,7 @@ class App extends React.Component {
 
   handleUpdateContact = async (name, phone, id) => {
     const { users } = this.state;
-    const url = `${baseUrl}/api/v1.0/contacts${id}`;
+    const url = `${baseUrl}/api/v1.0/contacts/${id}`;
     await fetch(url, {
       method: 'PATCH',
       body: JSON.stringify({
