@@ -29,7 +29,7 @@ export default class DatabaseService {
     const found = this.database.find((item) => {
       return item.phone === data || item.name === data;
     });
-    
+
     return [found];
   }
 
@@ -38,26 +38,24 @@ export default class DatabaseService {
       const itemWithId = { ...data, id: uuidv4() };
       this.database.push(itemWithId);
       this.storeToDisk();
-      return true;
+      return itemWithId; 
     } catch (e) {
       console.error('DATABASE ERROR', e);
-      return false;
+      return null;
     }
   }
 
-  update(id, data) {
-    const found = this.database.find((item) => {
-      return item.id === id;
-    });
-    const foundElIdx = this.database.indexOf(found);
-    try {
-      this.database[foundElIdx] = data;
-      this.storeToDisk();
-      return true;
-    } catch (e) {
-      console.error('DATABASE ERROR', e);
-      return false;
+  update(id, newData) {
+    const foundIndex = this.database.findIndex((item) => item.id === id);
+    if (foundIndex === -1) {
+      throw new Error(`Item with id ${id} not found`);
     }
+
+    const updatedItem = { ...this.database[foundIndex], ...newData };
+
+    this.database[foundIndex] = updatedItem;
+    this.storeToDisk();
+    return true;
   }
 
   delete(id) {

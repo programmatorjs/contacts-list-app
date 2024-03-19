@@ -34,12 +34,14 @@ class ListItem extends React.Component {
     const { editedName, editedPhone } = this.state;
     const { handleUpdate, id } = this.props;
     if (editedName && editedPhone) {
+      console.log("Updating contact with ID:", id); 
       await handleUpdate(editedName, editedPhone, id);
       this.setState({
         editMode: false,
       });
     }
   };
+  
 
   render() {
     const { name, contact, handleDelete, id } = this.props;

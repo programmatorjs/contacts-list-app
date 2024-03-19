@@ -48,15 +48,18 @@ app.get('/api/v1.0/contacts/:search', (req, res) => {
 app.post('/api/v1.0/contacts/', (req, res) => {
   const data = req.body;
 
-  if (!db.create(data)) {
-    res.status(500);
-    res.send({ error: `Error 500 when creating item with id ${id}` });
-    return;
+  try {
+    const newContact = db.create(data);
+    if (!newContact) {
+      res.status(500).send({ error: 'Error creating contact' });
+      return;
+    }
+    res.status(201).send(newContact);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
   }
-
-  res.status(201);
-  res.send(data);
 });
+
 
 app.patch('/api/v1.0/contacts/:id', (req, res) => {
   const id = req.params.id;
