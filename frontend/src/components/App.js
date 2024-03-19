@@ -4,6 +4,7 @@ import AddContacts from './AddContacts';
 import SearchContacts from './SearchContacts';
 
 const baseUrl = 'http://5.35.84.37:3001';
+// const baseUrl = 'http://localhost:3000';
 
 class App extends React.Component {
   constructor() {

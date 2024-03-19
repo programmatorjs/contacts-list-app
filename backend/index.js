@@ -80,15 +80,16 @@ app.patch('/api/v1.0/contacts/:id', (req, res) => {
 
   const data = req.body;
 
-  if (!db.update(id, data)) {
+  try {
+    const updatedContact = db.update(id, data);
+    res.status(200);
+    res.send(updatedContact);
+  } catch (error) {
     res.status(500);
     res.send({ error: `Error 500 when updating item with id ${id}` });
-    return;
   }
-
-  res.status(200);
-  res.send(data);
 });
+
 
 app.delete('/api/v1.0/contacts/:id', (req, res) => {
   const id = req.params.id;

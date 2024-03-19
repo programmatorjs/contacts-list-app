@@ -50,13 +50,14 @@ export default class DatabaseService {
     if (foundIndex === -1) {
       throw new Error(`Item with id ${id} not found`);
     }
-
+  
     const updatedItem = { ...this.database[foundIndex], ...newData };
-
+  
     this.database[foundIndex] = updatedItem;
     this.storeToDisk();
-    return true;
+    return updatedItem; 
   }
+  
 
   delete(id) {
     console.log(id);
