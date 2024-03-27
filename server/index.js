@@ -1,123 +1,40 @@
 import express from 'express';
-import DatabaseService from './database-service.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { env } from 'node:process';
+import { sequelize } from './db.js';
+import UserController from './controllers/userController.js';
 
 
-
-
+const port = env.PORT || 3003;
 
 const app = express();
 app.use(cors());
 
-const db = new DatabaseService();
-
-
-
-app.use(express.static('client/build'));
-
-
+app.use(express.static('build/static'));
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
 app.use(bodyParser.json());
 
-const port = 3005;
+app.get('/api/v1.0/contacts', UserController.getAllContacts);
 
-app.get('/api/v1.0/contacts', (req, res) => {
-  const allData = db.getAll();
+app.get('/api/v1.0/contacts/:search', UserController.getContactBySearch);
 
-  res.send(allData);
-});
+app.post('/api/v1.0/contacts/', UserController.createContact);
 
-app.get('/api/v1.0/contacts/:search', (req, res) => {
-  const id = req.params.search;
+app.patch('/api/v1.0/contacts/:id', UserController.updateContact);
 
-  if (!id) {
-    res.status(500);
-    res.send({ error: 'Error 500' });
-    return;
+app.delete('/api/v1.0/contacts/:id', UserController.deleteContact);
+
+const start = async () => {
+  try {
+    await sequelize.authenticate();
+    await sequelize.sync();
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`);
+    });
+  } catch (e) {
+    console.log(e);
   }
+};
 
-  const oneItem = db.getOne(id);
-
-  if (!oneItem) {
-    res.status(404);
-    res.send({ error: `Item with id=${id} not found` });
-    return;
-  }
-  console.log(oneItem);
-  res.send(oneItem);
-});
-
-app.post('/api/v1.0/contacts/', (req, res) => {
-  const data = req.body;
-
-  if (!db.create(data)) {
-    res.status(500);
-    res.send({ error: `Error 500 when creating item with id ${id}` });
-    return;
-  }
-
-  res.status(201);
-  res.send(data);
-});
-
-app.patch('/api/v1.0/contacts/:id', (req, res) => {
-  const id = req.params.id;
-
-  if (!id) {
-    res.status(500);
-    res.send({ error: 'Error 500' });
-    return;
-  }
-
-  const oneItem = db.getOne(id);
-
-  if (!oneItem) {
-    res.status(404);
-    res.send({ error: `Item with id=${id} not found` });
-    return;
-  }
-
-  const data = req.body;
-
-  if (!db.update(id, data)) {
-    res.status(500);
-    res.send({ error: `Error 500 when updating item with id ${id}` });
-    return;
-  }
-
-  res.status(200);
-  res.send(data);
-});
-
-app.delete('/api/v1.0/contacts/:id', (req, res) => {
-  const id = req.params.id;
-  console.log(id);
-  if (!id) {
-    res.status(500);
-    res.send({ error: 'Error 500' });
-    return;
-  }
-
-  const oneItem = db.getOne(id);
-
-  if (!oneItem) {
-    res.status(404);
-    res.send({ error: `Item with id=${id} not found` });
-    return;
-  }
-
-  if (db.delete(id)) {
-    res.status(204);
-    res.end();
-  } else {
-    res.status(500);
-    res.send({ error: `Error 500 when deleting item with id ${id}` });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+start();
